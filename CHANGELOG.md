@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.6
+
+- Added wrap-around inventory navigation within each pocket: pressing Up on the first item jumps to the last item, and pressing Down on the last item jumps to the first item.
+- Corrected the repository manifest version so source metadata stays in sync with published releases.
+
 ## 1.6.0
 
 - Added an **Opening Pocket** mod option with FAVORITES, MEDICINE, BALLS, TM/HM, BATTLE, KEY ITEMS, OTHER and LAST USED choices.
