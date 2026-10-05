@@ -1134,6 +1134,9 @@ local function decorateBag(game, opts, list, mod)
     startActionLabel = "SEARCH",
   }
   list.pageJump = false
+  -- Wrap vertically inside each pocket: Up on the first item selects the
+  -- last item, and Down on the last item returns to the first.
+  list.wrap = true
 
   -- Gen1Recomp ListMenu has native hold-to-scroll support. Enabling it here
   -- keeps remapped keyboards/controllers and future input backends working
