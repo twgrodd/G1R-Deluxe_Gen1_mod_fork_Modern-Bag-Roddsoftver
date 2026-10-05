@@ -1183,6 +1183,32 @@ local function decorateBag(game, opts, list, mod)
   end
 
   function list:draw()
+    -- Draw a compact pocket tab above the vanilla bag window.  The left/right
+    -- chevrons mirror the controls already used to switch pockets, while the
+    -- counter makes the current position in the seven-pocket set explicit.
+    local Font = require("src.render.Font")
+    local pocket = POCKETS[self.modernBag and self.modernBag.pocket or 1]
+    local pocketIndex = self.modernBag and self.modernBag.pocket or 1
+    local label = pocket and pocket.label or "BAG"
+    if pocket and pocket.id == "balls" then label = "POKEBALLS" end
+    if pocket and pocket.id == "machines" then label = "TM/HM" end
+
+    love.graphics.setColor(1, 1, 1, 1)
+    Font.drawBox(4, 0, 16, 3)
+    love.graphics.setColor(0, 0, 0, 1)
+
+    -- Keep the name readable on the small native 160 px canvas.  The page
+    -- indicator sits at the right edge, with chevrons advertising navigation.
+    local page = ("<%d/%d>"):format(pocketIndex, #POCKETS)
+    local pageWidth = Font.width(page)
+    local maxNameWidth = 112 - 40
+    local shown = label
+    while #shown > 1 and Font.width(shown) > maxNameWidth do
+      shown = shown:sub(1, #shown - 1)
+    end
+    Font.draw(shown, 40, 8)
+    Font.draw(page, 152 - pageWidth, 8)
+
     baseDraw(self)
   end
 
