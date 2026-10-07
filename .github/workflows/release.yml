@@ -103,7 +103,7 @@ jobs:
       - name: Build the mod ZIP
         env:
           VERSION: ${{ steps.ver.outputs.version }}
-          MOD_ID: "modern_bag"
+          MOD_ID: "modern_bag_roddsoft"
         run: |
           set -euo pipefail
           staging="$RUNNER_TEMP/pkg"
@@ -135,7 +135,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ steps.ver.outputs.version }}
           TAG: ${{ steps.ver.outputs.tag }}
-          MOD_ID: "modern_bag"
+          MOD_ID: "modern_bag_roddsoft"
         run: |
           set -euo pipefail
           prev="$(git tag -l 'v*' --sort=-v:refname | grep -v "^${TAG}$" | head -1 || true)"
