@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.13
+
+- Changed the internal mod ID from `modern_bag` to `modern_bag_roddsoft` to give **Modern Bag Roddsoft** its own package identity.
+- Release ZIPs now use the `modern_bag_roddsoft-<version>.zip` filename.
+- This ID change requires a manual reinstall when upgrading from an older `modern_bag` build; old mod-specific settings may not migrate automatically.
+- Updated the README to document the new identity, installation path, and fork-specific features.
+- Hardened the release workflow: normal code/documentation commits no longer auto-publish releases. A release now requires an explicit newer version in `manifest.json`, keeping code, README, changelog, and version metadata in sync.
+
 ## 1.6.11
 
 - Renamed the displayed mod name from **Modern-Bag-Roddsoft** to **Modern Bag Roddsoft** by removing the hyphens.
