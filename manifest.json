@@ -1,7 +1,7 @@
 {
   "id": "modern_bag_roddsoft",
   "name": "Modern Bag Roddsoft",
-  "version": "1.6.11",
+  "version": "1.6.13",
   "api": 2,
   "entry": "main.lua",
   "profile": "content",
