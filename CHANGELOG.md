@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.8
+
+- Added persistent per-pocket cursor memory so each inventory pocket reopens on the last selected item.
+- Poké Ball selection now returns to the last-used ball after the Bag closes and reopens, when that ball is still available.
+- Falls back safely to an available item when the previously selected item is no longer present.
+
 ## 1.6.6
 
 - Added wrap-around inventory navigation within each pocket: pressing Up on the first item jumps to the last item, and pressing Down on the last item jumps to the first item.
