@@ -445,7 +445,12 @@ end
 
 local function cursorBucket(state, pocketId)
   state.cursors[pocketId] = state.cursors[pocketId] or { index = 1, scroll = 0 }
-  return state.cursors[pocketId]
+  local cursor = state.cursors[pocketId]
+  if cursor.selected == nil and state.mod then
+    local saved = state.mod.save:get("last_selected_" .. pocketId, nil)
+    if type(saved) == "string" and saved ~= "" then cursor.selected = saved end
+  end
+  return cursor
 end
 
 local function saveCursor(list)
@@ -456,6 +461,9 @@ local function saveCursor(list)
   cursor.index = list.index or 1
   cursor.scroll = list.scroll or 0
   cursor.selected = selectedId(list)
+  if state.mod and cursor.selected then
+    state.mod.save:set("last_selected_" .. pocket.id, cursor.selected)
+  end
 end
 
 local function restoreCursor(list, rows, preserveId)
