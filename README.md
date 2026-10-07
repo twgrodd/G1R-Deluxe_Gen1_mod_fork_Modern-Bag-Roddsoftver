@@ -105,7 +105,7 @@ Gen1 Modern UI is optional. Without it, all Modern Bag Roddsoft inventory featur
 
 Import the release ZIP through the Gen1Recomp MODS manager, enable **Modern Bag Roddsoft**, and fully restart Gen1Recomp.
 
-Replace older Modern Bag versions rather than enabling multiple copies simultaneously.
+**Important for upgrades from versions using the old `modern_bag` ID:** Modern Bag Roddsoft now uses the new internal ID `modern_bag_roddsoft`. Remove/disable the old installation and manually install the new release ZIP. Saved mod-specific settings from the old ID may not carry over automatically.
 
 This fork includes GitHub release metadata for the G1R Deluxe mod updater. Once an updater-aware version is installed, future published versions can be discovered through the launcher.
 
@@ -113,4 +113,4 @@ This fork includes GitHub release metadata for the G1R Deluxe mod updater. Once 
 
 Custom Poké Balls and machines are categorized using their registered item fields. Conventional custom medicines are detected from their effect identifiers, while unknown items safely fall back to OTHER.
 
-The internal mod ID remains `modern_bag` for compatibility with existing installs and saved mod settings.
+The internal mod ID is `modern_bag_roddsoft`. This intentionally separates Modern Bag Roddsoft from installations that used the older `modern_bag` ID.
