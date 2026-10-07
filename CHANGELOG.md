@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.11
+
+- Renamed the displayed mod name from **Modern-Bag-Roddsoft** to **Modern Bag Roddsoft** by removing the hyphens.
+- Kept the internal `modern_bag` ID and GitHub update source unchanged for compatibility with existing installs and saved settings.
+
 ## 1.6.8
 
 - Added persistent per-pocket cursor memory so each inventory pocket reopens on the last selected item.
