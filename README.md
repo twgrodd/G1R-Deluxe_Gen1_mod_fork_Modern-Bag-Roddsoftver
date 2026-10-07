@@ -1,108 +1,116 @@
-# Modern Bag
+# Modern Bag Roddsoft
 
-Modern Bag divides the Gen1Recomp inventory into seven modern-style pockets, automatically organizes items, adds Favorites, persistent pinned items, advanced TM/HM tools, quick search and removes both vanilla carrying limits while preserving item behavior.
+Modern Bag Roddsoft is a fork of Modern Bag focused on making the Gen1Recomp inventory faster, clearer, and more comfortable to use. The original pocket-based Bag remains the foundation; this fork builds on it with quality-of-life navigation, persistent selections, Favorites and pins, search tools, expanded TM/HM information, unlimited inventory, and Gen1 Modern UI support.
 
-## Pockets
+## Highlights added in this fork
+
+- **Seven inventory pockets** including a dedicated **FAVORITES** pocket.
+- **Visible pocket navigation header** showing the current pocket and its position in the pocket set.
+- **Persistent cursor memory per pocket.** Reopening a pocket returns to the item you last selected when it is still available. This is especially useful in battle: after throwing a Poké Ball, reopening the BALLS pocket returns to that ball instead of starting at the first entry.
+- **Wrap-around navigation.** Press **Up** on the first item to jump to the last item, or **Down** on the last item to return to the first.
+- **Hold-to-scroll** with configurable OFF, NORMAL, FAST, and VERY FAST speeds.
+- **Configurable opening pocket**, including a **LAST USED** option.
+- **Favorites and persistent pins** for keeping important items easy to reach.
+- **Automatic sorting** while preserving pinned items at the top.
+- **Quick Search** across the entire Bag.
+- **Advanced TM/HM tools** with move-name search, filters, sorting, and detailed move information.
+- **Unlimited inventory capacity** for both distinct item types and stack sizes.
+- **Gen1 Modern UI integration**, including touch-friendly search/filter controls and keyboard presentation.
+
+## Pockets and navigation
+
+The Bag is divided into:
 
 - **FAVORITES** — items marked as favorites from any other pocket.
-- **MEDICINE** — healing items, status cures, Revives, PP recovery, vitamins and Rare Candy.
-- **BALLS** — every built-in or modded item registered as a Poké Ball.
-- **TM HM** — all TMs and HMs.
-- **BATTLE** — X items, Dire Hit, Guard Spec and Poké Doll.
+- **MEDICINE** — healing items, status cures, Revives, PP recovery, vitamins, and Rare Candy.
+- **BALLS** — built-in and modded items registered as Poké Balls.
+- **TM/HM** — all TMs and HMs.
+- **BATTLE** — X items, Dire Hit, Guard Spec, and Poké Doll.
 - **KEY ITEMS** — non-tossable and key items.
-- **OTHER** — stones, Repels, Escape Rope, fossils and everything not covered above.
+- **OTHER** — stones, Repels, Escape Rope, fossils, and items not covered above.
 
-Press **Left/Right** to change pocket. The opening pocket is now configurable in **MODS → Modern Bag → Options**. The default remains **MEDICINE**, and **LAST USED** can be selected if you want the Bag to reopen on the pocket you used most recently. Up/Down, A and B keep their original meanings.
+Press **Left/Right** to change pockets. The pocket header makes the current category and pocket position visible.
+
+Vertical navigation wraps around the list. Pressing **Up** while the first item is selected moves directly to the last item, and pressing **Down** on the last item returns to the first.
+
+Each pocket also remembers its last selected item between Bag openings. If that item is no longer available, the Bag safely falls back to an available entry.
 
 ## Opening pocket and fast scrolling
 
-Modern Bag v1.6.0 adds two runtime options:
+In **MODS → Modern Bag Roddsoft → Options** you can configure:
 
 - **Opening Pocket** — FAVORITES, MEDICINE, BALLS, TM/HM, BATTLE, KEY ITEMS, OTHER, or LAST USED.
 - **Hold Scroll Speed** — OFF, NORMAL, FAST, or VERY FAST.
 
-Holding **Up** or **Down** now repeats list movement automatically instead of requiring one press per item. **FAST** is the default. The implementation uses Gen1Recomp's native ListMenu key-repeat system, so remapped keyboard/controller inputs continue to work normally.
+The default opening pocket remains **MEDICINE**. Choosing **LAST USED** makes the Bag reopen on the pocket you most recently used.
 
-## Favorites and pinned items
+Holding **Up** or **Down** repeats list movement automatically. **FAST** is the default repeat profile. This uses Gen1Recomp's native ListMenu key-repeat support so remapped keyboard and controller inputs continue to work.
+
+## Favorites, pins, and item tools
 
 Press **SELECT** while an item is highlighted to open **ITEM OPTIONS**:
 
-- **ADD FAVORITE / REMOVE FAVORITE** — adds or removes the item from the FAVORITES pocket.
-- **PIN TO TOP / UNPIN ITEM** — fixes the item above every unpinned item in its normal category.
-- **MOVE ITEM** — starts manual item reordering; press SELECT on the destination item to complete the move.
-- **CANCEL** — closes ITEM OPTIONS.
+- **ADD FAVORITE / REMOVE FAVORITE** — add or remove the item from FAVORITES.
+- **PIN TO TOP / UNPIN ITEM** — keep the item above unpinned items in its normal category.
+- **MOVE ITEM** — manually reposition an item for the current Bag session.
+- **CANCEL** — close ITEM OPTIONS.
 
-The row markers indicate item status:
+Row markers show saved status: `F` for Favorite, `P` for pinned, and `PF` for both.
 
-- `F` — favorite.
-- `P` — pinned.
-- `PF` — both pinned and favorite.
-
-Favorites and pins are persistent. If an item stack reaches zero, the item temporarily disappears from the Bag but keeps its saved Favorite and Pin status. It returns automatically when reacquired.
-
-Pinned items are sorted before all unpinned items. Their position is not changed by alphabetical sorting; multiple pinned items follow the order in which they were pinned.
+Favorites and pins persist even if an item stack reaches zero. When the item is acquired again, its saved Favorite and Pin status returns.
 
 ## Automatic sorting
 
-Items are automatically sorted by pocket and display name whenever the Bag is opened. The order is refreshed when a new item type is added or an item stack disappears completely. TMs and HMs are kept in numerical order, with HMs before TMs.
+Items are sorted automatically by pocket and display name when the Bag opens and when item types are added or removed. TMs and HMs remain in numerical order, with HMs before TMs.
 
-Pinned items always remain at the top of their category. Manual SELECT reordering remains available through **ITEM OPTIONS → MOVE ITEM** for the current Bag session. Closing and reopening the Bag applies automatic sorting again without moving pinned items below unpinned items.
+Pinned items stay above unpinned items. Manual reordering through **ITEM OPTIONS → MOVE ITEM** is available for the current Bag session.
 
-## Quick search
+## Quick Search
 
 Press **START** from any pocket except TM/HM to open Quick Search.
 
-- Use the D-pad to move across the on-screen keyboard, or tap/click an individual key when Gen1 Modern UI is active.
-- Press **A** to enter a character or activate DEL, CLR, GO and EXIT.
-- Press **B** to delete the last character; press it with an empty query to close search.
-- Press **SELECT** to clear the full query.
-- Press **START**, tap the Modern UI **SEARCH** button, or select **GO** to show all matching items.
-- Choosing a result returns to the correct normal pocket with that item selected.
+Search works across the full Bag and matches both displayed item names and internal item identifiers. Choosing a result returns to the appropriate pocket with that item selected.
 
-Search works across every pocket and matches both the displayed item name and its internal item identifier. An empty query lists the entire Bag alphabetically. Search results also show the `F`, `P` and `PF` status markers.
+The search keyboard supports controller/keyboard navigation and, with Gen1 Modern UI enabled, large pointer/touch-friendly keys. DEL, CLR, GO, and EXIT are available directly from the keyboard.
 
-## Advanced TM/HM search and move information
+## Advanced TM/HM tools
 
-The **TM HM** pocket has its own START menu instead of the general item search. It can:
+The **TM/HM** pocket has a dedicated START menu that can:
 
-- search by the name of the move contained in the machine;
-- filter by elemental move type;
-- filter by **PHYSICAL**, **SPECIAL** or **STATUS** damage class;
-- sort by machine number, move name, highest power or lowest power;
-- combine name, type and damage-class filters.
+- search by the move contained in a TM or HM;
+- filter by elemental type;
+- filter by **PHYSICAL**, **SPECIAL**, or **STATUS** using Generation I damage rules;
+- sort by machine number, move name, highest power, or lowest power;
+- combine move-name, type, and damage-class filters.
 
-Generation I uses a type-based physical/special split. Normal, Fighting, Flying, Poison, Ground, Rock, Bug and Ghost attacks are shown as PHYSICAL. Fire, Water, Grass, Electric, Psychic, Ice and Dragon attacks are shown as SPECIAL. Moves with no base power are shown as STATUS.
+Press **Y** on controller or **I** on keyboard while a TM/HM is highlighted to open **MOVE INFORMATION**, showing the move's type, class, power, accuracy, PP, and effect.
 
-Press **Y** on a controller or **I** on a keyboard while a TM/HM is highlighted to open **MOVE INFORMATION**. The screen shows:
-
-- machine number and move name;
-- elemental type;
-- damage class;
-- power;
-- accuracy;
-- PP;
-- move effect.
-
-The same Y/I information shortcut works inside filtered TM/HM results. Pinned machines remain above unpinned machines regardless of the selected sorting mode.
+Pinned machines remain above unpinned machines under every sorting mode.
 
 ## Unlimited inventory
 
-The Bag may contain an unlimited number of distinct item types, and each item stack may grow beyond 99 units. Counts remain finite values earned, bought or received during normal play.
+The Bag can contain an unlimited number of distinct item types, and individual stacks can exceed the vanilla 99-item limit.
 
-The mod wraps the vanilla BagMenu rather than reimplementing item effects. Items are still used, consumed, taught, thrown and validated by Gen1Recomp's original menu. Pockets, Favorites, pinned items, automatic sorting and search are also available when the Bag is opened during battle.
+Modern Bag Roddsoft wraps Gen1Recomp's normal BagMenu rather than replacing item behavior. Items continue to be used, consumed, taught, thrown, and validated through the game's normal inventory systems.
 
-## Installation
+## Gen1 Modern UI support
 
-Import the ZIP in the MODS manager, enable **Modern Bag**, then fully restart Gen1Recomp.
+Modern Bag Roddsoft supports the `gen1ModernUi` API v1 compatibility contract.
 
-Replace older Modern Bag versions instead of enabling multiple versions at the same time.
+With **Gen1 Modern UI 0.8.2 or newer**, the pocket Bag uses its dedicated pocket-aware presentation. Quick Search and TM/HM move search expose keyboard-grid state for large individual keys, Move Information integrates with the UI, and dedicated SEARCH/FILTER touch controls are available.
+
+Gen1 Modern UI is optional. Without it, all Modern Bag Roddsoft inventory features continue to work with the classic 160×144 interface.
+
+## Installation and updates
+
+Import the release ZIP through the Gen1Recomp MODS manager, enable **Modern Bag Roddsoft**, and fully restart Gen1Recomp.
+
+Replace older Modern Bag versions rather than enabling multiple copies simultaneously.
+
+This fork includes GitHub release metadata for the G1R Deluxe mod updater. Once an updater-aware version is installed, future published versions can be discovered through the launcher.
 
 ## Compatibility
 
-Custom balls and machines are categorized from their registered item fields. Conventional custom medicines are detected from their effect identifiers; unknown items safely fall back to OTHER.
+Custom Poké Balls and machines are categorized using their registered item fields. Conventional custom medicines are detected from their effect identifiers, while unknown items safely fall back to OTHER.
 
-### Gen1 Modern UI
-
-Modern Bag v1.6.0 keeps the official `gen1ModernUi` compatibility contract (`apiVersion = 1`). With **Gen1 Modern UI 0.8.2 or newer** enabled, the normal seven-pocket Bag uses Modern UI's dedicated pocket-aware Bag presenter. Quick Search and TM/HM move-name search now expose a real keyboard-grid state, so Modern UI renders large individual keys instead of a list of keyboard rows. Move Information continues to use the compatibility contract. Modern UI 0.8.2 also exposes a dedicated **SEARCH** / **FILTER** touch button on the Bag and fixes the Key Items font fallback caused by the unsellable-price dash.
-
-Modern UI remains optional. If it is absent or disabled, Modern Bag keeps its original 160×144 presentation and all inventory behavior remains unchanged.
+The internal mod ID remains `modern_bag` for compatibility with existing installs and saved mod settings.
