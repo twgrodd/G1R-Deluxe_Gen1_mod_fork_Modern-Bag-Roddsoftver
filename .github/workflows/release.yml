@@ -5,9 +5,8 @@ name: Release
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - '.github/**'
-      - '**.md'
+    paths:
+      - 'manifest.json'
   workflow_dispatch:
     inputs:
       version:
@@ -62,23 +61,25 @@ jobs:
           latest = released[-1] if released else None
 
           override = os.environ.get("DISPATCH_VERSION", "").strip()
-          if not override:
-              found = re.search(r"\[release\s+(\d+\.\d+\.\d+)\]", sh("git", "log", "-1", "--pretty=%B"))
-              override = found.group(1) if found else ""
+          manifest_ver = parse(manifest_version) or die(
+              f"manifest.json version {manifest_version!r} is not X.Y.Z"
+          )
 
-          manifest_ver = parse(manifest_version)
           if override:
               version = parse(override) or die(f"invalid version override {override!r} (expected X.Y.Z)")
-          elif manifest_ver and (latest is None or manifest_ver > latest):
-              version = manifest_ver
-          elif latest:
-              major, minor, patch = latest
-              patch += 1
-              if patch > 99:
-                  minor, patch = minor + 1, 0
-              version = (major, minor, patch)
+              if version != manifest_ver:
+                  die(
+                      f"manual release version {override!r} must match "
+                      f"manifest.json version {manifest_version!r}"
+                  )
           else:
-              die(f"manifest.json version {manifest_version!r} is not X.Y.Z and there is no vX.Y.Z tag")
+              version = manifest_ver
+
+          if latest is not None and version <= latest:
+              die(
+                  "manifest.json version must be newer than the latest release: "
+                  f"{manifest_version} <= {latest[0]}.{latest[1]}.{latest[2]}"
+              )
 
           text = "%d.%d.%d" % version
           print(f"version={text}")
